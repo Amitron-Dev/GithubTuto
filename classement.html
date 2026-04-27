@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Classement des Cours</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        table { width: 100%; border-collapse: collapse; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+        th { background-color: #f2f2f2; cursor: pointer; }
+        th:hover { background-color: #ddd; }
+    </style>
+</head>
+<body>
+    <h1>Classement des Cours</h1>
+    <table id="courseTable">
+        <thead>
+            <tr>
+                <th onclick="sortTable(0)">Position</th>
+                <th onclick="sortTable(1)">Nom du Cours</th>
+                <th onclick="sortTable(2)">Score</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr><td>1</td><td>Mathématiques</td><td>95</td></tr>
+            <tr><td>2</td><td>Physique</td><td>90</td></tr>
+            <tr><td>3</td><td>Chimie</td><td>85</td></tr>
+            <tr><td>4</td><td>Biologie</td><td>80</td></tr>
+            <tr><td>5</td><td>Histoire</td><td>75</td></tr>
+        </tbody>
+    </table>
+
+    <script>
+        function sortTable(n) {
+            const table = document.getElementById('courseTable');
+            let rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
+            switching = true;
+            dir = "asc";
+            while (switching) {
+                switching = false;
+                rows = table.rows;
+                for (i = 1; i < (rows.length - 1); i++) {
+                    shouldSwitch = false;
+                    x = rows[i].getElementsByTagName("TD")[n];
+                    y = rows[i + 1].getElementsByTagName("TD")[n];
+                    if (dir == "asc") {
+                        if (n === 0 || n === 2) { // Numeric sort for Position and Score
+                            if (parseInt(x.innerHTML) > parseInt(y.innerHTML)) {
+                                shouldSwitch = true;
+                                break;
+                            }
+                        } else { // String sort for Name
+                            if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
+                                shouldSwitch = true;
+                                break;
+                            }
+                        }
+                    } else if (dir == "desc") {
+                        if (n === 0 || n === 2) {
+                            if (parseInt(x.innerHTML) < parseInt(y.innerHTML)) {
+                                shouldSwitch = true;
+                                break;
+                            }
+                        } else {
+                            if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) {
+                                shouldSwitch = true;
+                                break;
+                            }
+                        }
+                    }
+                }
+                if (shouldSwitch) {
+                    rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+                    switching = true;
+                    switchcount++;
+                } else {
+                    if (switchcount == 0 && dir == "asc") {
+                        dir = "desc";
+                        switching = true;
+                    }
+                }
+            }
+        }
+    </script>
+</body>
+</html>
