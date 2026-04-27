@@ -11,7 +11,80 @@
 
         <p>entrez vos identifiants pour vous connectez
         </p>
+        <style>
+            body {
+                margin: 0;
+                min-height: 100vh;
+                font-family: "Segoe UI", Arial, sans-serif;
+                background: radial-gradient(circle at top, #6c82ff 0%, #1d264a 55%, #0c111f 100%);
+                color: #eef2ff;
+                display: grid;
+                place-items: center;
+                padding: 1.5rem;
+            }
+            form {
+                width: min(420px, 100%);
+                background: rgba(255, 255, 255, 0.08);
+                border: 1px solid rgba(255, 255, 255, 0.16);
+                border-radius: 28px;
+                box-shadow: 0 30px 80px rgba(0, 0, 0, 0.3);
+                padding: 2rem;
+                backdrop-filter: blur(14px);
+            }
+            form p {
+                margin: 0 0 1.5rem;
+                line-height: 1.6;
+                color: #dce7ff;
+            }
+            .field {
+                display: flex;
+                flex-direction: column;
+                gap: 0.45rem;
+                margin-bottom: 1.2rem;
+            }
+            .field label {
+                font-size: 0.95rem;
+                opacity: 0.9;
+            }
+            .field input {
+                border: 1px solid rgba(255, 255, 255, 0.18);
+                border-radius: 14px;
+                padding: 0.95rem 1rem;
+                background: rgba(255, 255, 255, 0.08);
+                color: #f8fbff;
+                outline: none;
+                transition: border-color 0.2s ease, box-shadow 0.2s ease;
+            }
+            .field input:focus {
+                border-color: rgba(108, 138, 255, 0.9);
+                box-shadow: 0 0 0 4px rgba(108, 138, 255, 0.16);
+            }
+            .login {
+                width: 100%;
+                border: none;
+                border-radius: 14px;
+                padding: 0.95rem 1rem;
+                background: linear-gradient(135deg, #7b8cff, #3b57c2);
+                color: #fff;
+                font-size: 1rem;
+                cursor: pointer;
+                transition: transform 0.2s ease, opacity 0.2s ease;
+            }
+            .login:hover {
+                transform: translateY(-1px);
+                opacity: 0.96;
+            }
+        </style>
 
+        <div class="field">
+            <label for="email">Adresse e-mail</label>
+            <input id="email" type="email" name="email" placeholder="votre@email.com" required>
+        </div>
+
+        <div class="field">
+            <label for="password">Mot de passe</label>
+            <input id="password" type="password" name="password" placeholder="••••••••••" required>
+        </div>
         <button class="login">
             Connexion...
         </button>
